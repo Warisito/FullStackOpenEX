@@ -1,0 +1,38 @@
+sequenceDiagram
+    participant navegador
+    participant servidor
+
+    navegador->>servidor: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate servidor
+    navegador-->>servidor: Documento HTML
+    deactivate servidor
+
+    navegador->>servidor: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate servidor  
+    servidor-->>navegador: El archivo CSS
+    deactivate servidor
+
+    navegador->>servidor: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+
+    activate servidor
+    servidor-->>navegador: El archivo JS
+    deactivate servidor
+
+    Note right of navegador: El navegador comienza a ejecutar el código JavaScript que obtiene el JSON del servidor
+
+    navegador->>servidor: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate servidor
+    servidor-->>navegador: [{content: "a", date: "2024-01-27T22:30:00.921Z", ... ]
+    deactivate servidor
+
+    Note right of navegador: El navegador ejecuta la función "callback" que renderiza las notas
+    
+    navegador->>servidor: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+    activate servidor
+    servidor-->>navegador: [302 Found]
+    Note right of navegador: Se almancena la información y se repite el proceso
+    deactivate servidor
+
+
+// MARKDOWM  : [![](https://mermaid.ink/img/pako:eNq9VM1u00AQfpXRnhPHdZEQPvRCC6iiLZJzoq7QdHecTLveNbvrQBv1qfoIfTHWdhIRQYioCr6N59v5Zr75WQppFYlcePrakpF0zDhzWJcG4tegCyy5QRPA4IJmqKz71eXJLbj3DL4NdHx0tPbl8P5kCvMQGp9PJj60iskn0idz0p7NLScVT-g71o0mbJqJsYH8EA5l4AUG-olnm2WL5tjKtiYTLHyYnn0coIp-E-Plcq2RTXTvShdgcKztLt8NbQ4nGtDJOS8svC2K_5fwjV-H3CHw_nxP96d7HvsIjmfzALaC7TAbC6Stmcw9AgLdkGwDOiAN8ulR8Szy4AIL6bgJEKcU7HWIaOoQp8XFeaTX_0QmhQGjTPZZMl0upTUhDmIOpcBSjCCGo87I0uzVOD0YZ6-nWZYfpnmaJm-yg88dJkkSuHohUVdKgkaoWiP56dFEdolaX6O8LUWvpSOjyPF9B_MQtw5XY_wnGT9dFH-1y_TtS7fPz5u3y8M0g3e2NepqT_UFAeoa4xUzfdVsKutqHCq_i_FjtQ2HfnAaZyV5u1NqMRI1xces4nFcdrBShDnVVIquh4oqbHUoRWkeIhTbYIs7I0UeXEsj0TZds1e3VOQVah__kuJg3dlwcPu7-_ADE0fsDA?type=png)](https://mermaid.live/edit#pako:eNq9VM1u00AQfpXRnhPHdZEQPvRCC6iiLZJzoq7QdHecTLveNbvrQBv1qfoIfTHWdhIRQYioCr6N59v5Zr75WQppFYlcePrakpF0zDhzWJcG4tegCyy5QRPA4IJmqKz71eXJLbj3DL4NdHx0tPbl8P5kCvMQGp9PJj60iskn0idz0p7NLScVT-g71o0mbJqJsYH8EA5l4AUG-olnm2WL5tjKtiYTLHyYnn0coIp-E-Plcq2RTXTvShdgcKztLt8NbQ4nGtDJOS8svC2K_5fwjV-H3CHw_nxP96d7HvsIjmfzALaC7TAbC6Stmcw9AgLdkGwDOiAN8ulR8Szy4AIL6bgJEKcU7HWIaOoQp8XFeaTX_0QmhQGjTPZZMl0upTUhDmIOpcBSjCCGo87I0uzVOD0YZ6-nWZYfpnmaJm-yg88dJkkSuHohUVdKgkaoWiP56dFEdolaX6O8LUWvpSOjyPF9B_MQtw5XY_wnGT9dFH-1y_TtS7fPz5u3y8M0g3e2NepqT_UFAeoa4xUzfdVsKutqHCq_i_FjtQ2HfnAaZyV5u1NqMRI1xces4nFcdrBShDnVVIquh4oqbHUoRWkeIhTbYIs7I0UeXEsj0TZds1e3VOQVah__kuJg3dlwcPu7-_ADE0fsDA)
